@@ -2,31 +2,44 @@
 // addon replaces all of the t.co links with the original links:)
 // Author: David Dahl <ddahl@mozilla.com>
 
-window.addEventListener("load", subTitleForHref, false);
+console.log("tco-killer.js loaded...");
 
 // look for all anchors that use "t.co"
-function subTitleForHref()
-{
-  window.removeEventListener("load", arguments.callee, false);
+function fixLinks() {
   var links = document.querySelectorAll(".twitter-timeline-link");
+  console.log("links...");
+  console.log(links);
   for (var idx in links) {
+    if (!links[idx].title) {
+      continue;
+    }
     links[idx].href = links[idx].title;
   }
 }
+
+fixLinks();
+
+window.setTimeout(fixLinks, 5000);
 
 // select the target node
 var target = document.querySelector('ol#stream-items-id');
 
 // create an observer instance
 var observer = new MutationObserver(function(mutations) {
+  console.log("mutations!");
+  console.log(mutations)
   mutations.forEach(function(mutation) {
     if (!mutation.addedNodes.length) {
      return;
     }
     for (var i = 0; i < mutation.addedNodes.length; i++) {
       var links =
-        mutation.addedNodes.item(i).querySelectorAll(".twitter-timeline-link");
+        document.querySelectorAll(".twitter-timeline-link");
+        // mutation.addedNodes.item(i).querySelectorAll(".twitter-timeline-link");
       for (var idx in links) {
+        if (!links[idx].title) {
+          continue;
+        }
         links[idx].href = links[idx].title;
       }
     }
