@@ -1,0 +1,1 @@
+{"license": "", "description": "Keep t.co links out of twitter! This addon replaces t.co links in tweets with the original link", "contributors": [], "author": "ddahl", "url": "", "dependencies": ["api-utils", "addon-kit"], "version": "initial.rev14", "lib": "lib", "fullName": "tco-dnt", "main": "main", "id": "jid0-jPHB9WgseJEshjioJuMoCkpq8sY", "name": "tco-dnt"}
